@@ -156,9 +156,13 @@ When $\mathrm{Var}(\varepsilon_i) = \sigma_i^2$ varies across observations (hete
 
 Instead of assuming constant variance, **Heteroscedasticity-Consistent (HC)** estimators estimate the variance-covariance matrix of $\hat{\beta}$ directly from the residuals. The HC3 variant is:
 
-$$\widehat{\mathrm{Var}}_{\mathrm{HC3}}(\hat{\beta}) = (X^\top X)^{-1} \left(\sum_{i=1}^n \frac{e_i^2}{(1-h_{ii})^2} x_i x_i^\top \right) (X^\top X)^{-1}$$
+$$
+\widehat{\mathrm{Var}}_{\mathrm{HC3}}(\hat{\beta}) = (X^\top X)^{-1} \left(\sum_{i=1}^n \frac{e_i^2}{(1-h_{ii})^2} x_i x_i^\top \right) (X^\top X)^{-1}
+$$
 
-where $h_{ii} = [H]_{ii}$ is the leverage of observation $i$ — the $i$-th diagonal of the hat matrix. The $(1-h_{ii})^2$ term in the denominator corrects for the bias that arises when high-leverage points are present. HC3 is the most conservative and recommended variant in moderate samples.
+where $h_{ii}$ is the leverage of observation $i$ — the $i$-th diagonal of the hat matrix $H = X(X^\top X)^{-1}X^\top$.
+
+The $(1-h_{ii})^2$ term in the denominator corrects for the bias that arises when high-leverage points are present. HC3 is the most conservative and recommended variant in moderate samples.
 
 **Key point**: HC3 does not change $\hat{\beta}$, $\hat{y}$, or residuals. It only changes the standard errors and hence all downstream inference. The model fit is identical.
 
